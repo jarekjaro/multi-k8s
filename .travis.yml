@@ -13,7 +13,7 @@ after_success:
   - docker build -t jarekjaro/multi-nginx ./nginx
   - docker build -t jarekjaro/multi-server ./server
   - docker build -t jarekjaro/multi-worker ./worker
-  # Log in to docker CLI
+  # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
   - docker push jarekjaro/multi-client
@@ -23,10 +23,10 @@ after_success:
 
 deploy:
   provider: elasticbeanstalk
-  region: eu-central-1
+  region: us-west-1
   app: multi-docker
   env: MultiDocker-env
-  bucket_name: elasticbeanstalk-eu-central-1-736572860838
+  bucket_name: elasticbeanstalk-us-west-1-306476627547
   bucket_path: docker-multi
   on:
     branch: master
